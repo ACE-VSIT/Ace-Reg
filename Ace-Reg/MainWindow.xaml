@@ -1,0 +1,68 @@
+﻿<Window x:Class="Ace_Reg.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ace_Reg"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="680" Width="525" 
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        ContentRendered="Window_ContentRendered" ResizeMode="NoResize">
+    <Grid>
+
+
+
+        <!--                Images                -->
+
+
+        <Image x:Name="image1" HorizontalAlignment="Center" 
+               Height="113" VerticalAlignment="Top" Width="276" 
+               Margin="0"  Source="Resources/ubuntu-mate-logo16.png"/>
+
+
+        <Image x:Name="image" HorizontalAlignment="Left" 
+               Height="213" Margin="38,355,0,0" 
+               VerticalAlignment="Top" Width="206"
+               Source="Resources/aa.jpg "/>
+
+
+
+        <!--          Rectangle & Borders          -->
+
+
+        <Rectangle Fill="Blue" HorizontalAlignment="Left" 
+                   Height="5" Stroke="Black" VerticalAlignment="Top" 
+                   Width="150" Margin="32,558,0,0" 
+                   RenderTransformOrigin="0.37,0.44"/>
+
+        <Rectangle Fill="Black" Height="99" Margin="380,0,0,0" 
+                   Stroke="Black" VerticalAlignment="Top"/>
+
+
+        <Border BorderBrush="Black" BorderThickness="0" 
+                HorizontalAlignment="Left" Height="101" 
+                VerticalAlignment="Top" Width="130" 
+                Background="Black" Margin="0,-2,0,0"/>
+
+
+
+        <!--                 Labels                 -->
+
+
+        <Label x:Name="label" Content="Initializing...." 
+               HorizontalAlignment="Left" Margin="29,198,0,0" 
+               VerticalAlignment="Top" FontSize="50px"/>
+
+        <Label x:Name="label1" Content="© 2016 Ace" 
+               HorizontalAlignment="Left" Margin="368,621,0,0"
+               VerticalAlignment="Top"  FontSize="20px" RenderTransformOrigin="0.825,0.73"/>
+
+
+        <ProgressBar x:Name="PBar"  
+                     HorizontalAlignment="Left" Height="5" 
+                     Margin="189,558,0,0" VerticalAlignment="Top" 
+                     Width="107" RenderTransformOrigin="0.51,-0.5" 
+                     Minimum="0" Maximum="100"/>
+
+    </Grid>
+</Window>

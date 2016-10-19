@@ -1,0 +1,113 @@
+﻿<Window x:Class="Ace_Reg.InsertEvent"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:Ace_Reg"
+		mc:Ignorable="d"
+		 Height="600" Width="800"  
+		WindowState="Normal" WindowStartupLocation="CenterScreen"
+		ResizeMode="CanMinimize">
+    <Grid>
+
+
+        <!--                 Rectangles                    -->
+
+        <Rectangle Fill="Silver" HorizontalAlignment="Center" 
+				   Height="56" Margin="-1,416,0,-1" Stroke="Black" 
+				   VerticalAlignment="Bottom" Width="795"/>
+
+        <!--                   Labels                       -->
+
+        <Label x:Name="label3" Content="© 2016 Ace" 
+			   HorizontalAlignment="Left" Margin="666,0,0,15" 
+			   VerticalAlignment="Bottom" FontSize="15px" 
+			   RenderTransformOrigin="0.511,0.067"/>
+
+        <Label x:Name="label" Content="Available Tables: " 
+			   HorizontalAlignment="Left" Margin="14,214,0,0" 
+			   VerticalAlignment="Top" FontSize="20px"/>
+
+        <Label x:Name="lab" Content="Name : " 
+			   HorizontalAlignment="Left" Margin="12,298,0,0" 
+			   VerticalAlignment="Top" FontSize="15px"/>
+
+        <Label x:Name="laba" Content="Roll Number : " 
+			   HorizontalAlignment="Left" Margin="243,300,0,0" 
+			   VerticalAlignment="Top" FontSize="15px"/>
+
+        <Label x:Name="labas" Content="Sem / Section : " 
+			   HorizontalAlignment="Left" Margin="92,349,0,0" 
+			   VerticalAlignment="Top" FontSize="15px"/>
+
+        <Label x:Name="lbas" Content="Course : " 
+			   HorizontalAlignment="Left" Margin="540,302,0,0" 
+			   VerticalAlignment="Top" FontSize="15px"/>
+
+        <Label x:Name="lbaas" Content="Prize : " 
+			   HorizontalAlignment="Left" Margin="334,215,0,0" 
+			   VerticalAlignment="Top" FontSize="20px"/>
+
+        <Label x:Name="lbasas" Content="College : " 
+			   HorizontalAlignment="Left" Margin="426,346,0,0" 
+			   VerticalAlignment="Top" FontSize="15px"/>
+
+        <Label x:Name="lbaxsas" Content="^-^ Welcome! New Participant ^-^ " 
+			   HorizontalAlignment="Left" Margin="86,416,0,0" 
+			   VerticalAlignment="Top" FontSize="37px" Width="596"/>
+
+
+        <!--                   Images                       -->
+
+        <Image x:Name="image" HorizontalAlignment="Center" 
+			   Height="181" Margin="1,1,2,0" 
+			   VerticalAlignment="Top" Width="791"
+			   Source="Resources/ace-ev2.png"/>
+
+        <!--                   Buttons                       -->
+
+        <Button x:Name="goBack" Content="Back"
+				HorizontalAlignment="Left" Margin="50,0,0,15" 
+				VerticalAlignment="Bottom" Width="78" Height="25"
+				Click="goBack_Click"/>
+
+
+
+
+        <ComboBox x:Name="selectEvent" HorizontalAlignment="Left" 
+				  Margin="181,223,0,0" VerticalAlignment="Top" 
+				  Width="120" SelectionChanged="selectEvent_SelectionChanged" Height="25"/>
+
+        <ComboBox x:Name="prizeBox" HorizontalAlignment="Left" 
+				  Margin="411,222,0,0" VerticalAlignment="Top" 
+				  Width="144" Height="25" />
+
+
+        <TextBox x:Name="nameBox" HorizontalAlignment="Left" 
+                 Height="24" Margin="81,304,0,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="141" FontSize="15px"/>
+
+        <TextBox x:Name="rollBox" HorizontalAlignment="Left" 
+                 Height="24" Margin="354,306,0,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="164" FontSize="15px"/>
+
+        <TextBox x:Name="semBox" HorizontalAlignment="Left" 
+                 Height="24" Margin="212,352,0,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="166" FontSize="15px"/>
+
+        <TextBox x:Name="courseBox" HorizontalAlignment="Left" 
+                 Height="24" Margin="612,306,0,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="140" FontSize="15px"/>
+
+        <TextBox x:Name="collBox" HorizontalAlignment="Left" 
+                 Height="22" Margin="503,352,0,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="168" FontSize="15px" />
+
+        <Button x:Name="subButton" Content="Submit" 
+                HorizontalAlignment="Left" Margin="597,221,0,0" 
+                VerticalAlignment="Top" Width="152" Height="26"
+                Click="subButton_Click"/>
+
+
+    </Grid>
+</Window>
