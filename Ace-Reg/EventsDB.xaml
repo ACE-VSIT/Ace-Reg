@@ -43,6 +43,12 @@
                 VerticalAlignment="Top" Width="79" Height="25"
                 Click="goBack_Click"/>
 
+        <Button x:Name="goEnh" Content="More options"
+                HorizontalAlignment="Left" Margin="170,427,0,0" 
+                VerticalAlignment="Top" Width="79" Height="25"
+                Click="goEnh_Click"/>
+
+
         <Button x:Name="createButton" Content="Create Event" 
                 HorizontalAlignment="Left" Margin="54,235,0,0" 
                 VerticalAlignment="Top" Width="131" Height="58"

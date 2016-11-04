@@ -57,5 +57,12 @@ namespace Ace_Reg
             this.Hide();
             ins.Show();
         }
+
+        private void goEnh_Click(object sender, RoutedEventArgs e)
+        {
+            EnhancedOptions ins = new EnhancedOptions();
+            this.Hide();
+            ins.Show();
+        }
     }
 }

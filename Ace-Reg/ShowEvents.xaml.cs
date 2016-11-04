@@ -17,7 +17,7 @@ namespace Ace_Reg
         private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";
         
         SQLiteConnection sqLite; string Query, tableNames;
-        String selectedTable;
+        string selectedTable, apTable;
 
         public ShowEvents()
         {
@@ -68,7 +68,8 @@ namespace Ace_Reg
                 while(reader.Read())
                 {
                     tableNames = reader.GetString(0);
-                    selectEvent.Items.Add(tableNames);
+                    if (!(tableNames.EndsWith("_approval")))
+                        selectEvent.Items.Add(tableNames);
                 }                
             }
             catch (Exception exception)
@@ -140,13 +141,18 @@ namespace Ace_Reg
             else
             {
                 sqLite = new SQLiteConnection(dbConString);
-
+                apTable = selectedTable + "_approval";
                 try
                 {
                     sqLite.Open();
                     Query = "DROP TABLE '" + selectedTable + "'";
                     SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
                     createCommand.ExecuteNonQuery();
+
+                    Query = "DROP TABLE '" + apTable + "'";
+                    createCommand = new SQLiteCommand(Query, sqLite);
+                    createCommand.ExecuteNonQuery();
+
                     MessageBox.Show("Event has been eliminated");
 
                 }
