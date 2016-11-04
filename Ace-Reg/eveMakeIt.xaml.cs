@@ -10,7 +10,7 @@ namespace Ace_Reg
     public partial class eveMakeIt : Window
     {
         private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";        
-        SQLiteConnection sqLite; String eveTable;
+        SQLiteConnection sqLite; string eveTable, approvalTable;
 
         public eveMakeIt()
         {
@@ -36,6 +36,7 @@ namespace Ace_Reg
             {
                 
                 eveTable = createEventBox.Text;
+                approvalTable = eveTable + "_approval";
 
                 if (!(string.IsNullOrWhiteSpace(eveTable)))
                 {
@@ -43,9 +44,14 @@ namespace Ace_Reg
                     {
                         sqLite.Open();
 
-                        string Q = "CREATE TABLE '" + eveTable + "'(EID TEXT PRIMARY KEY, Name TEXT, RollNo TEXT, College TEXT, Course TEXT, Semester_Section TEXT, Prize TEXT)";                        
+                        string Q = "CREATE TABLE '" + eveTable + "'(EID TEXT PRIMARY KEY, Name TEXT, RollNo TEXT, College TEXT, Course TEXT, Semester_Section TEXT, Prize TEXT)";
                         SQLiteCommand createCommand = new SQLiteCommand(Q, sqLite);
                         createCommand.ExecuteNonQuery();
+
+                        Q = "CREATE TABLE '" + approvalTable + "'(EID TEXT PRIMARY KEY, Name TEXT, Status TEXT, SeatNo TEXT UNIQUE)";
+                        createCommand = new SQLiteCommand(Q, sqLite);
+                        createCommand.ExecuteNonQuery();
+
                         MessageBox.Show("Event Creation Success!");
                     }
                     catch (Exception exception)
