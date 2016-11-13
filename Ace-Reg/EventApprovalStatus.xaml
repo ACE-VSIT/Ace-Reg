@@ -1,0 +1,84 @@
+﻿<Window x:Class="Ace_Reg.EventApprovalStatus"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ace_Reg"
+        mc:Ignorable="d"
+        Title="EventApprovalStatus" Height="500" Width="800"  
+        WindowState="Normal" WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+
+        <!--                 Rectangles                    -->
+
+        <Rectangle Fill="Silver" HorizontalAlignment="Left" 
+                   Height="55"  Stroke="Black" 
+                   VerticalAlignment="Top" Width="795"
+                   Grid.Row="3"/>
+
+
+        <!--                   Labels                       -->
+
+        <Label x:Name="label3" Content="© 2016 Ace" 
+               HorizontalAlignment="Right" 
+               VerticalAlignment="Center" FontSize="15px"                
+               Grid.Row="3" Margin="0,0,20,0"/>
+
+        <TextBlock Text="Select Event: " FontSize="44" 
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Margin="30,0,0,0"/>
+
+        <!--                   Buttons                       -->
+
+        <Button x:Name="goBack" Content="Back"
+                HorizontalAlignment="Left" Margin="20,0,0,0" 
+                VerticalAlignment="Center" Width="80" Height="25"
+                Click="goBack_Click"
+                Grid.Row="3"/>
+
+        <ComboBox x:Name="approvalBox" HorizontalAlignment="Center"
+                  VerticalAlignment="Center" Width="200"
+                  SelectionChanged="approvalBox_SelectionChanged"
+                  FontSize="20" Margin="0,10,0,0"/>
+
+        <Button x:Name="updateData" Grid.Row="1"
+                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                Margin="0,0,70,20" Content="Update" FontSize="20" 
+                Width="150" Click="updateData_Click"/>
+
+        <!--                    DataGrid                    -->
+
+        <DataGrid x:Name="approvalGrid" Grid.Row="1" Margin="0,0,0,80"                 
+                  SelectionMode="Single" SelectionUnit="Cell"/>
+
+        <TextBox x:Name="personSelected" VerticalAlignment="Center"
+                 HorizontalAlignment="Right" Width="200" FontSize="25"
+                 Margin="0,10,30,0" Text="Select Record"
+                 MouseEnter="personSelected_MouseEnter"/>
+
+
+        <CheckBox x:Name="statusCheck" Grid.Row="1" 
+                  VerticalAlignment="Bottom"
+                  HorizontalAlignment="Left"
+                  Content="Status" FontSize="25"
+                  Margin="20,0,0,20"/>
+
+        <TextBlock Grid.Row="1" VerticalAlignment="Bottom"
+                   HorizontalAlignment="Left" 
+                   FontSize="25" Margin="150,0,0,20"
+                   Text="Seat Number: "/>
+
+        <TextBox x:Name="seatNum" Grid.Row="1" VerticalAlignment="Bottom"
+                 HorizontalAlignment="Center" FontSize="20" 
+                 Width="150" Margin="0,0,0,20"/>
+
+    </Grid>
+</Window>

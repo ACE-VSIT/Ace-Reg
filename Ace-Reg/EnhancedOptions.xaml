@@ -20,7 +20,7 @@
         <!--                 Rectangles                    -->
 
         <Rectangle Fill="Silver" HorizontalAlignment="Left" 
-                   Height="56"  Stroke="Black" 
+                   Height="40"  Stroke="Black" 
                    VerticalAlignment="Top" Width="795"
                    Grid.Row="3"/>
 

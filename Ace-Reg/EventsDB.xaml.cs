@@ -64,5 +64,12 @@ namespace Ace_Reg
             this.Hide();
             ins.Show();
         }
+
+        private void approvalStatus_Click(object sender, RoutedEventArgs e)
+        {
+            EventApprovalStatus approval = new EventApprovalStatus();
+            this.Hide();
+            approval.Show();
+        }
     }
 }
