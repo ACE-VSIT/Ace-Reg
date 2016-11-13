@@ -24,7 +24,7 @@
 			   VerticalAlignment="Top" FontSize="15px" 
 			   RenderTransformOrigin="0.511,0.067"/>
 
-		<Label x:Name="label" Content="Available Tables: " 
+		<Label x:Name="label" Content="Available Events: " 
 			   HorizontalAlignment="Left" Margin="34,209,0,0" 
 			   VerticalAlignment="Top" FontSize="20px"/>
 

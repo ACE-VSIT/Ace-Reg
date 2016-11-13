@@ -13,7 +13,7 @@ namespace Ace_Reg
         private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";
 
         SQLiteConnection sqLite; string Query, tableNames;
-        private string selectedTable, testID; int x;
+        private string selectedTable, apTable, testID; int x;
 
 
         public Update_Events()
@@ -124,13 +124,14 @@ namespace Ace_Reg
                 }
 
                 else
-                {
+                {                    
                     try
                     {
                         sqLite.Open();
                         Query = "UPDATE '" + selectedTable + "' SET Prize = '" + prizeBox.Text + "' WHERE EID='" + this.SBox.Text + "' OR NAME = '" + this.SBox.Text + "'";
                         SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
                         createCommand.ExecuteNonQuery();
+                                                
                         MessageBox.Show("Record Updated");
                     }
                     catch (Exception exception)
@@ -181,7 +182,14 @@ namespace Ace_Reg
 
         private void upName_Click(object sender, RoutedEventArgs e)
         {
+
+            apTable = selectedTable + "_approval";
+
             Query = "UPDATE '" + selectedTable + "' SET Name = '" + nameBox.Text + "' WHERE EID='" + this.SBox.Text + "' OR NAME = '" + this.SBox.Text + "'";
+
+            upGen();
+
+            Query = "UPDATE '" + apTable + "' SET Name = '" + nameBox.Text + "' WHERE EID='" + this.SBox.Text + "' OR NAME = '" + this.SBox.Text + "'";
 
             upGen();
         }
@@ -254,7 +262,8 @@ namespace Ace_Reg
             }
 
             else
-            {
+            {                
+
                 try
                 {
                     sqLite.Open();

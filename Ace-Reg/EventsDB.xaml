@@ -25,9 +25,6 @@
                RenderTransformOrigin="0.511,0.067"/>
 
 
-        <Label x:Name="label" Content="Play with Events" 
-               HorizontalAlignment="Left" VerticalAlignment="Top" 
-               Margin="236,234,0,0" FontSize="40px"/>
 
         <!--                   Images                       -->
 
@@ -64,6 +61,11 @@
                 VerticalAlignment="Top" Width="133" Height="58"
                 Click="modEvent_Click"/>
 
+        <Button x:Name="approvalStatus" 
+                Content="Approval Status" 
+                HorizontalAlignment="Center" Margin="312,237,322,0" 
+                VerticalAlignment="Top" Width="160" Height="58"
+                Click="approvalStatus_Click"/>
 
     </Grid>
 </Window>
