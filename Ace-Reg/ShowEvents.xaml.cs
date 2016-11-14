@@ -18,6 +18,7 @@ namespace Ace_Reg
         
         SQLiteConnection sqLite; string Query, tableNames;
         string selectedTable, apTable;
+        DataRowView rowView;
 
         public ShowEvents()
         {
@@ -176,8 +177,9 @@ namespace Ace_Reg
         private void delRec_Click(object sender, RoutedEventArgs e)
         {
             sqLite = new SQLiteConnection(dbConString);
+            apTable = selectedTable + "_approval";
 
-            if (MessageBox.Show("Delete selected entries?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            if (MessageBox.Show("Delete selected entry?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
             {
                 MessageBox.Show("Deletion Process Canceled");
             }
@@ -187,8 +189,34 @@ namespace Ace_Reg
                 try
                 {
                     sqLite.Open();
-                    Query = "DELETE FROM '" + selectedTable + "'  WHERE EID='" + SBox.Text + "' OR Name='" + SBox.Text + "'";
-                    buttonHelp();
+
+                    if (SBox.Text.Equals(null) || SBox.Text.Equals("") || SBox.Text.Equals(" "))
+                    {
+                        var selected = eventRecords.SelectedItems;
+                                                
+                        foreach(var selectedRows in selected)
+                        {
+                            rowView = (DataRowView)selectedRows;
+
+                            Query = "DELETE FROM '" + selectedTable + "'  WHERE EID='" + rowView["EID"] + "'";
+                            SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
+                            createCommand.ExecuteNonQuery();
+
+                            Query = "DELETE FROM '" + apTable + "'  WHERE EID='" + rowView["EID"] + "'";                            
+                            createCommand = new SQLiteCommand(Query, sqLite);
+                            createCommand.ExecuteNonQuery();
+                        }
+                    }
+
+                    else
+                    {
+                        Query = "DELETE FROM '" + selectedTable + "'  WHERE EID='" + SBox.Text + "' OR Name='" + SBox.Text + "'";
+                        buttonHelp();
+
+                        Query = "DELETE FROM '" + apTable + "'  WHERE EID='" + SBox.Text + "' OR Name='" + SBox.Text + "'";
+                        buttonHelp();
+                    }
+
                     MessageBox.Show("Selected Entry Deleted");
                 }
                 catch (Exception exception)
@@ -198,6 +226,7 @@ namespace Ace_Reg
 
                 finally
                 {
+                    buttonHelp();
                     sqLite.Close();                    
                 }
             }

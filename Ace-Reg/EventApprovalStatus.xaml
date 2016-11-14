@@ -57,7 +57,8 @@
         <!--                    DataGrid                    -->
 
         <DataGrid x:Name="approvalGrid" Grid.Row="1" Margin="0,0,0,80"                 
-                  SelectionMode="Single" SelectionUnit="Cell"/>
+                  SelectionMode="Single" SelectionUnit="Cell"
+                  GridLinesVisibility="None"/>
 
         <TextBox x:Name="personSelected" VerticalAlignment="Center"
                  HorizontalAlignment="Right" Width="200" FontSize="25"

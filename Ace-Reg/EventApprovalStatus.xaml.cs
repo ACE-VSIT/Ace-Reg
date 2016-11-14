@@ -109,7 +109,6 @@ namespace Ace_Reg
         }
         #endregion
 
-
         private void updateData_Click(object sender, RoutedEventArgs e)
         {
 

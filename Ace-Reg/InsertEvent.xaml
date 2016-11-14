@@ -68,10 +68,13 @@
 
         <Button x:Name="goBack" Content="Back"
 				HorizontalAlignment="Left" Margin="50,0,0,15" 
-				VerticalAlignment="Bottom" Width="78" Height="25"
+				VerticalAlignment="Bottom" Width="80" Height="25"
 				Click="goBack_Click"/>
 
-
+        <Button x:Name="importCSV" Content="Import CSV" 
+                HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                Click="importCSV_Click" 
+                Margin="150,0,0,15" Width="100" Height="25"/>
 
 
         <ComboBox x:Name="selectEvent" HorizontalAlignment="Left" 

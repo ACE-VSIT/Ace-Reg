@@ -78,6 +78,12 @@
     <Compile Include="EventApprovalStatus.xaml.cs">
       <DependentUpon>EventApprovalStatus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImportCSV.xaml.cs">
+      <DependentUpon>ImportCSV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportMember.xaml.cs">
+      <DependentUpon>ImportMember.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InsertEvent.xaml.cs">
       <DependentUpon>InsertEvent.xaml</DependentUpon>
     </Compile>
@@ -118,6 +124,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EventsDB.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportCSV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportMember.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
