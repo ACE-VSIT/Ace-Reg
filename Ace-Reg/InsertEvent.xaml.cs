@@ -117,6 +117,14 @@ namespace Ace_Reg
             ev.Show();
         }
 
+
+        private void importCSV_Click(object sender, RoutedEventArgs e)
+        {
+            ImportCSV im = new ImportCSV();
+            this.Hide();
+            im.Show();
+        }
+
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             Environment.Exit(0);

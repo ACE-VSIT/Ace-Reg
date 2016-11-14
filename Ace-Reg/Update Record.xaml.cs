@@ -10,6 +10,7 @@ namespace Ace_Reg
     public partial class Update_Record : Window
     {
         private readonly string dbConString = @"Data Source=members.db;Version=3;Password=simonLikesApples;";
+
         SQLiteConnection sqLite; String Query;
         private string courseBox, semBox, depBox, secBox, testID;
         int x;

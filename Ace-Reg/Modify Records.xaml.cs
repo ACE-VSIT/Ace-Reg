@@ -91,9 +91,27 @@ namespace Ace_Reg
                 try
                 {
                     sqLite.Open();
-                 //   sqLite.ChangePassword("simonLikesApples");
-                    Query = "DELETE FROM MemberData WHERE EnrolmentNo='" + SearchingBox.Text + "' OR Name='" + SearchingBox.Text + "'";
-                    buttonHelper();
+                    //   sqLite.ChangePassword("simonLikesApples");
+
+
+                    if (SearchingBox.Text.Equals(null) || SearchingBox.Text.Equals("") || SearchingBox.Text.Equals(" "))
+                    {
+                        var selected = recordsTable.SelectedItems;
+
+                        foreach (var selectedRows in selected)
+                        {
+                            var rowView = (DataRowView)selectedRows;
+                            Query = "DELETE FROM MemberData WHERE EnrolmentNo='" + rowView["EnrolmentNo"] + "'";
+                            buttonHelper();                            
+                        }
+                    }
+
+                    else
+                    {
+                        Query = "DELETE FROM MemberData WHERE EnrolmentNo='" + SearchingBox.Text + "' OR Name='" + SearchingBox.Text + "'";
+                        buttonHelper();
+                    }
+                    
                 }
                 catch (Exception exception)
                 {

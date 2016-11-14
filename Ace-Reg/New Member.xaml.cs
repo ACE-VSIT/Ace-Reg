@@ -130,6 +130,7 @@ namespace Ace_Reg
         {
             depBox = DeptBox.SelectedValue as string;
         }
+
         #endregion
 
         #region Navigation
@@ -145,6 +146,13 @@ namespace Ace_Reg
             Modify_Records mod = new Modify_Records();
             this.Hide();
             mod.Show();
+        }
+
+        private void importData_Click(object sender, RoutedEventArgs e)
+        {
+            ImportMember immem = new ImportMember();
+            this.Hide();
+            immem.Show();         
         }
 
         #endregion
