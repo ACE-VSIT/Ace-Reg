@@ -8,7 +8,7 @@
         Loaded="Window_Loaded"
         Title="ImportCSV" Height="500" Width="800"  
         WindowState="Normal" WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
@@ -18,9 +18,8 @@
 
         <!--                 Rectangles                    -->
 
-        <Rectangle Fill="Silver" HorizontalAlignment="Left" 
-                   Height="55"  Stroke="Black" 
-                   VerticalAlignment="Top" Width="795"
+        <Rectangle Fill="Silver" 
+                   Height="55"  Stroke="Black"                    
                    Grid.Row="3"/>
 
 
@@ -47,7 +46,10 @@
         <DataGrid x:Name="importCsvGrid" Grid.Row="1" 
                   GridLinesVisibility="None"
                   AutoGenerateColumns="True"
-                  ItemsSource="{Binding}"/>
+                  ItemsSource="{Binding}"
+                  AllowDrop="True"                  
+                  Drop="importCsvGrid_Drop"
+                  PreviewDragOver="importCsvGrid_PreviewDragOver"/>
 
         <TextBlock Text="Select Event: " FontSize="44" 
                    HorizontalAlignment="Left"
@@ -61,6 +63,8 @@
 
         <Image Source="Resources/aa.jpg" VerticalAlignment="Center"
                HorizontalAlignment="Right" Margin="0,0,70,0"/>
+
+        <MediaElement x:Name="secretMusic" Visibility="Hidden"/>
 
     </Grid>
 </Window>

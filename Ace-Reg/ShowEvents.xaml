@@ -38,7 +38,9 @@
 		<Image x:Name="image" HorizontalAlignment="Center" 
 			   Height="181" Margin="1,1,2,0" 
 			   VerticalAlignment="Top" Width="791"
-			   Source="/Resources/ace-ev2.png"/>
+			   Source="/Resources/ace-ev2.png"
+               MouseEnter="image_MouseEnter"
+               MouseLeave="image_MouseLeave"/>
 
 		<!--                   Buttons                       -->
 
@@ -86,5 +88,12 @@
 				 Height="23" Margin="529,221,0,0" TextWrapping="Wrap" 
 				 VerticalAlignment="Top" Width="175"/>
 
-	</Grid>
+        <PasswordBox x:Name="passwordCheck" VerticalAlignment="Top"
+                     HorizontalAlignment="Center"
+                     Margin="0,60,0,0" Width="200" Height="30"
+                     MouseLeave="passwordCheck_MouseLeave"
+                     MouseEnter="passwordCheck_MouseEnter"
+                     Visibility="Collapsed"/>
+
+    </Grid>
 </Window>

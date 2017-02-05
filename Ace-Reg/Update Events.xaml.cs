@@ -41,7 +41,6 @@ namespace Ace_Reg
             }
             catch (Exception exception)
             {
-
                 MessageBox.Show(exception.Message);
             }
 
@@ -124,14 +123,21 @@ namespace Ace_Reg
                 }
 
                 else
-                {                    
+                {
+
+                    apTable = selectedTable + "_approval";
+
                     try
                     {
                         sqLite.Open();
                         Query = "UPDATE '" + selectedTable + "' SET Prize = '" + prizeBox.Text + "' WHERE EID='" + this.SBox.Text + "' OR NAME = '" + this.SBox.Text + "'";
                         SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
                         createCommand.ExecuteNonQuery();
-                                                
+
+                        Query = "UPDATE '" + apTable + "' SET Prize = '" + prizeBox.Text + "' WHERE EID='" + this.SBox.Text + "' OR NAME = '" + this.SBox.Text + "'";
+                        createCommand = new SQLiteCommand(Query, sqLite);
+                        createCommand.ExecuteNonQuery();
+
                         MessageBox.Show("Record Updated");
                     }
                     catch (Exception exception)

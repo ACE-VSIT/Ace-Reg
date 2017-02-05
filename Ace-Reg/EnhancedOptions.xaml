@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="EnhancedOptions" Height="500" Width="800"  
         WindowState="Normal" WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanResize">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -19,9 +19,8 @@
         
         <!--                 Rectangles                    -->
 
-        <Rectangle Fill="Silver" HorizontalAlignment="Left" 
-                   Height="40"  Stroke="Black" 
-                   VerticalAlignment="Top" Width="795"
+        <Rectangle Fill="Silver" 
+                   Height="40"  Stroke="Black"                    
                    Grid.Row="3"/>
 
         <Rectangle Grid.Row="1" VerticalAlignment="Stretch"

@@ -16,14 +16,19 @@ namespace Ace_Reg
     {
         private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";
         
+        private readonly string back = "desmond_NUONG12";
+
         SQLiteConnection sqLite; string Query, tableNames;
         string selectedTable, apTable;
         DataRowView rowView;
+
+        bool test;
 
         public ShowEvents()
         {
             InitializeComponent();
             fillCombo();
+            test = false;
         }        
 
         #region Export To CSV
@@ -141,38 +146,44 @@ namespace Ace_Reg
 
             else
             {
-                sqLite = new SQLiteConnection(dbConString);
-                apTable = selectedTable + "_approval";
-                try
+                if (test == true)
                 {
-                    sqLite.Open();
-                    Query = "DROP TABLE '" + selectedTable + "'";
-                    SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
-                    createCommand.ExecuteNonQuery();
+                    sqLite = new SQLiteConnection(dbConString);
+                    apTable = selectedTable + "_approval";
+                    try
+                    {
+                        sqLite.Open();
+                        Query = "DROP TABLE '" + selectedTable + "'";
+                        SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
+                        createCommand.ExecuteNonQuery();
 
-                    Query = "DROP TABLE '" + apTable + "'";
-                    createCommand = new SQLiteCommand(Query, sqLite);
-                    createCommand.ExecuteNonQuery();
+                        Query = "DROP TABLE '" + apTable + "'";
+                        createCommand = new SQLiteCommand(Query, sqLite);
+                        createCommand.ExecuteNonQuery();
 
-                    MessageBox.Show("Event has been eliminated");
+                        MessageBox.Show("Event has been eliminated");
 
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message);
+                    }
+
+                    finally
+                    {
+                        EventsDB db = new EventsDB();
+                        sqLite.Close();
+                        this.Hide();
+                        db.Show();
+                    }
                 }
-                catch (Exception exception)
-                {
-                    MessageBox.Show(exception.Message);
-                }
 
-                finally
-                {
-                    EventsDB db = new EventsDB();
-                    sqLite.Close();
-                    this.Hide();                    
-                    db.Show();                                        
-                }
+                else
+                    MessageBox.Show("You shall NOT pass!");
             }
         }
         #endregion
-
+       
         #region Modify Records
         private void delRec_Click(object sender, RoutedEventArgs e)
         {
@@ -251,6 +262,34 @@ namespace Ace_Reg
             Adapt.Fill(data);
             eventRecords.ItemsSource = data.DefaultView;
             Adapt.Update(data);
+        }
+
+        private void image_MouseEnter(object sender, MouseEventArgs e)
+        {
+            image.Visibility = Visibility.Hidden;
+            passwordCheck.Visibility = Visibility.Visible;
+        }
+
+        private void passwordCheck_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (passwordCheck.Password.Equals(back))
+                test = true;
+            else
+                test = false;
+
+            image.Visibility = Visibility.Visible;                
+        }
+
+        private void image_MouseLeave(object sender, MouseEventArgs e)
+        {
+            image.Visibility = Visibility.Visible;
+            passwordCheck.Visibility = Visibility.Hidden;
+        }
+
+        private void passwordCheck_MouseEnter(object sender, MouseEventArgs e)
+        {
+            image.Visibility = Visibility.Hidden;
+            passwordCheck.Visibility = Visibility.Visible;
         }
         #endregion
 

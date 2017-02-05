@@ -8,7 +8,7 @@
         Loaded="Window_Loaded"
         Title="ImportMember" Height="500" Width="800"  
         WindowState="Normal" WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
@@ -18,9 +18,8 @@
 
         <!--                 Rectangles                    -->
 
-        <Rectangle Fill="Silver" HorizontalAlignment="Left" 
+        <Rectangle Fill="Silver" 
                    Height="55"  Stroke="Black" 
-                   VerticalAlignment="Top" Width="795"
                    Grid.Row="3"/>
 
 
@@ -47,9 +46,15 @@
         <DataGrid x:Name="importCsvGrid" Grid.Row="1" 
                   GridLinesVisibility="None"
                   AutoGenerateColumns="True"
-                  ItemsSource="{Binding}"/>
+                  ItemsSource="{Binding}"
+                  AllowDrop="True"                  
+                  Drop="importCsvGrid_Drop"                  
+                  PreviewDragOver="importCsvGrid_PreviewDragOver"/>
 
-        <Image Source="Resources/ubuntu-mate-logo16.png" Stretch="Fill" />
+        <Image Source="Resources/ubuntu-mate-logo16.png" 
+               Stretch="Fill" />
+
+        <MediaElement x:Name="secretMusic" Visibility="Hidden"/>
 
     </Grid>
 </Window>
