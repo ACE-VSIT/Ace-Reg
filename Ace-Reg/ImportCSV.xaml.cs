@@ -85,10 +85,10 @@ namespace Ace_Reg
 
                         string Query = "INSERT INTO '" + selectedTable + "'(EID, Name, RollNo, College, Course, Semester_Section, Prize) values('"
                         + rowView["EID"] + "', '" + rowView["Name"] + "', '" + rowView["RollNo"] + "',  '" + rowView["College"] + "',  '"
-                        + rowView["Course"] + "',  '" + rowView["Semester_Section"] + "', '" + rowView["Prize"] + "' )";
+                        + rowView["Course"] + "',  '" + rowView["Semester_Section"] + "', '" + rowView["Prize"] + "')";
                         help(Query, sqLite);
 
-                        Query = "INSERT INTO '" + approvalTable + "'(EID, Name) values('" + rowView["EID"] + "', '" + rowView["Name"] + "')";
+                        Query = "INSERT INTO '" + approvalTable + "'(EID, Name, Prize) values('" + rowView["EID"] + "', '" + rowView["Name"] + "', '" + rowView["Prize"] + "' )";
                         help(Query, sqLite);
                     }
 
@@ -156,9 +156,10 @@ namespace Ace_Reg
 
             catch(Exception ex)
             {
+                ex.ToString();
                 MessageBox.Show("No File Selected", "Message");
             }
-        }
+        }        
         #endregion
 
         #region Nav & Exit   
@@ -175,5 +176,32 @@ namespace Ace_Reg
         }
         #endregion
 
+        #region Drag Drop        
+        private void importCsvGrid_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                // Note that you can have more than one file.                
+                var test = e.Data.GetData(DataFormats.FileDrop);
+                string[] files = (string[])test;
+                var file = files[0];
+
+                if (file.EndsWith("csv"))
+                    importCsvGrid.ItemsSource = ReadCsv(file).DefaultView;
+
+                else if (file.EndsWith("wav") || file.EndsWith("mp3"))
+                {
+                    secretMusic.Source = new Uri(file);
+                    secretMusic.Play();
+                }
+            }
+
+        }
+
+        private void importCsvGrid_PreviewDragOver(object sender, DragEventArgs e)
+        {
+            e.Handled = true;
+        }
+        #endregion
     }
 }

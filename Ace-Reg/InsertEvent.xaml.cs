@@ -14,7 +14,7 @@ namespace Ace_Reg
 
         SQLiteConnection sqLite; string Query, tableNames;
         private string selectedTable, approvalTable;
-        string ID = Guid.NewGuid().ToString().Replace("-", string.Empty).Substring(0, 8);
+        string ID = Guid.NewGuid().ToString().Replace("-", string.Empty).Substring(0, 5);
        
         public InsertEvent()
         {
@@ -27,6 +27,8 @@ namespace Ace_Reg
         {
             SQLiteConnection sqLite = new SQLiteConnection(dbConString);
 
+            ID = selectedTable.Substring(0, 3).ToUpper() + "-" + ID.ToUpper();
+
             if (prizeBox.Text.Equals(null) || nameBox.Text.Equals(null) || courseBox.Equals(null) || rollBox.Equals(null) || semBox.Equals(null) || collBox.Equals(null))
                 MessageBox.Show("Fill all the details");
             else
@@ -34,14 +36,14 @@ namespace Ace_Reg
 
                 try
                 {
-                    approvalTable = selectedTable + "_approval";
+                    approvalTable = selectedTable + "_approval";                    
 
                     sqLite.Open();
                     string Query = "INSERT INTO '" + selectedTable + "'(EID, Name, RollNo, College, Course, Semester_Section, Prize) values('" + ID + "', '" + this.nameBox.Text + "', '" + rollBox.Text + "',  '" + collBox.Text + "',  '" + courseBox.Text + "',  '" + semBox.Text + "', '" + prizeBox.Text + "' )";
                     SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
                     createCommand.ExecuteNonQuery();
 
-                    Query = "INSERT INTO '" + approvalTable + "'(EID, Name) values('" + ID + "', '" + this.nameBox.Text + "')";
+                    Query = "INSERT INTO '" + approvalTable + "'(EID, Name, Prize) values('" + ID + "', '" + this.nameBox.Text + "', '" + prizeBox.Text + "')";
                     createCommand = new SQLiteCommand(Query, sqLite);
                     createCommand.ExecuteNonQuery();
 

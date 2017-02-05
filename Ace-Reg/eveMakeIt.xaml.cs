@@ -12,6 +12,8 @@ namespace Ace_Reg
         private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";        
         SQLiteConnection sqLite; string eveTable, approvalTable;
 
+        private readonly string chickwa = "desmond_NUONG12";        
+
         public eveMakeIt()
         {
             InitializeComponent();            
@@ -48,7 +50,7 @@ namespace Ace_Reg
                         SQLiteCommand createCommand = new SQLiteCommand(Q, sqLite);
                         createCommand.ExecuteNonQuery();
 
-                        Q = "CREATE TABLE '" + approvalTable + "'(EID TEXT PRIMARY KEY, Name TEXT, Status TEXT, SeatNo TEXT UNIQUE)";
+                        Q = "CREATE TABLE '" + approvalTable + "'(EID TEXT PRIMARY KEY, Name TEXT, Prize TEXT, Status TEXT, SeatNo TEXT UNIQUE)";
                         createCommand = new SQLiteCommand(Q, sqLite);
                         createCommand.ExecuteNonQuery();
 
@@ -76,6 +78,27 @@ namespace Ace_Reg
         }
         #endregion
 
+        private void login_Click(object sender, RoutedEventArgs e)
+        {
+            bool test = false;
+                        
+            test = passingMarks(chickwa, checkPass.Password); 
+            if (test == true)
+            {
+                createButton.Visibility = Visibility.Visible;
+                label.Visibility = Visibility.Visible;
+
+                login.Visibility = Visibility.Collapsed;
+                checkPass.Visibility = Visibility.Collapsed;
+            }                           
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            createButton.Visibility = Visibility.Collapsed;
+            label.Visibility = Visibility.Collapsed;            
+        }
+
         #region Nav-Exit
         private void goBack_Click(object sender, RoutedEventArgs e)
         {
@@ -88,8 +111,14 @@ namespace Ace_Reg
         {
             Environment.Exit(0);
         }
+        #endregion        
 
-        #endregion
-        
+        private bool passingMarks(string A, string B)
+        {
+            if (A.Equals(B))
+                return true;
+            else
+                return false;
+        }        
     }
 }

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ace_Reg"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         Height="500" Width="800"
         WindowState="Normal" WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize">
@@ -50,6 +51,15 @@
         <TextBox x:Name="createEventBox" HorizontalAlignment="Left" 
                  Height="49" Margin="367,234,0,0" TextWrapping="Wrap" 
                  VerticalAlignment="Top" Width="320" FontSize="30px"/>
+
+        <PasswordBox x:Name="checkPass" HorizontalAlignment="Left" 
+                 Height="49" Margin="367,234,0,0" 
+                 VerticalAlignment="Top" Width="320" FontSize="30px"/>
+
+        <Button x:Name="login" Content="Login First" 
+                HorizontalAlignment="Left" Margin="302,333,0,0" 
+                VerticalAlignment="Top" Width="198" Height="45"
+                Click="login_Click"/>
 
     </Grid>
 </Window>

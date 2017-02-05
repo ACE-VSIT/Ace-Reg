@@ -18,6 +18,7 @@ namespace Ace_Reg
 
         SQLiteConnection sqLite; string Query;        
         DataRowView rowView;
+        OpenFileDialog ofd;
 
         public ImportMember()
         {
@@ -98,23 +99,7 @@ namespace Ace_Reg
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                OpenFileDialog ofd = new OpenFileDialog()
-                {
-                    Filter = "CSV | *csv",
-                    ValidateNames = true,
-                    Multiselect = false
-                };
-
-                ofd.ShowDialog();
-                importCsvGrid.ItemsSource = ReadCsv(ofd.FileName).DefaultView;
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show("No File Selected", "Message");
-            }
+            openTheFile();
         }
         #endregion
 
@@ -129,6 +114,56 @@ namespace Ace_Reg
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             Environment.Exit(0);
+        }
+        #endregion
+
+        void openTheFile()
+        {
+            try
+            {
+                ofd = new OpenFileDialog()
+                {
+                    Filter = "CSV | *csv",
+                    ValidateNames = true,
+                    Multiselect = false
+                };
+
+                ofd.ShowDialog();
+                importCsvGrid.ItemsSource = ReadCsv(ofd.FileName).DefaultView;
+            }
+
+            catch (Exception ex)
+            {
+                ex.ToString();
+                MessageBox.Show("No File Selected", "Message");
+            }
+        }
+
+        #region Drag Drop        
+        private void importCsvGrid_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                // Note that you can have more than one file.                               
+                var test = e.Data.GetData(DataFormats.FileDrop);
+                string[] files = (string[])test;
+                var file = files[0];
+
+                if (file.EndsWith("csv"))
+                    importCsvGrid.ItemsSource = ReadCsv(file).DefaultView;
+
+                else if (file.EndsWith("wav") || file.EndsWith("mp3"))
+                {
+                    secretMusic.Source = new Uri(file);
+                    secretMusic.Play();
+                }
+            }
+
+        }
+
+        private void importCsvGrid_PreviewDragOver(object sender, DragEventArgs e)
+        {
+            e.Handled = true;
         }
         #endregion
     }

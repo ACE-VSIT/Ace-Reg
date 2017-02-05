@@ -29,6 +29,8 @@ namespace Ace_Reg
 
         private void checking_Click(object sender, RoutedEventArgs e)
         {
+            eventsParticipated.Items.Clear();
+
             sqLite = new SQLiteConnection(dbConString);
             try
             {
@@ -39,7 +41,7 @@ namespace Ace_Reg
                 while (reader.Read())
                 {
                     tableNames = reader.GetString(0);
-                    bool result = testIfExists(tableNames);                    
+                    testIfExists(tableNames);                    
                 }
             }
             catch (Exception exception)
@@ -56,47 +58,49 @@ namespace Ace_Reg
         }
 
         #region Populate list
-        private bool testIfExists(string tableName)
+        private void testIfExists(string approveTable)
         {
             sqLite = new SQLiteConnection(dbConString);
 
-            try
+            if(approveTable.EndsWith("_approval"))
             {
-
-                sqLite.Open();
-                Query = "SELECT * FROM '" + tableNames + "' WHERE EID='" + checkName.Text + "' OR Name='" + checkName.Text + "' ORDER BY Name";
-                SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
-                SQLiteDataReader dataReader = createCommand.ExecuteReader();
-                x = 0;
-                while (dataReader.Read())
+                try
                 {
-                    testID = dataReader.GetString(0);
-                    x++;
-                }
-
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-
-            finally
-            {
-                if (x >= 1)
-                {
-                    MessageBox.Show("Record Selected: " + testID);
-                    testID = null;
+                    string truth = "True";
+                    sqLite.Open();
+                    Query = "SELECT * FROM '" + approveTable + "' WHERE EID='" + checkName.Text + "' OR Name='" + checkName.Text +
+                        "' AND Status='" + truth + "' ORDER BY Name";
+                    SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
+                    SQLiteDataReader dataReader = createCommand.ExecuteReader();
                     x = 0;
-                    eventsParticipated.Items.Add(tableNames);
-                }
-                                
-                sqLite.Close();
-            }
+                    while (dataReader.Read())
+                    {
+                        testID = dataReader.GetString(0);
+                        x++;
+                    }
 
-            if (x >= 1)
-                return true;
-            else
-                return false;
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+
+                finally
+                {
+                    if (x >= 1)
+                    {
+                        //MessageBox.Show("Record Selected: " + testID);
+                        testID = null;
+                        x = 0;
+
+                        string[] historicData = approveTable.Split('_');
+
+                        eventsParticipated.Items.Add(historicData[0]);
+                    }
+
+                    sqLite.Close();
+                }
+            }            
         }
         #endregion
 
