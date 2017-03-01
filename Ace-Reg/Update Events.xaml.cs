@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Data.SQLite;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Ace_Reg
 {
@@ -23,7 +13,7 @@ namespace Ace_Reg
         private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";
 
         SQLiteConnection sqLite; string Query, tableNames;
-        private String selectedTable, testID; int x;
+        private string selectedTable, apTable, testID; int x;
 
 
         public Update_Events()
@@ -45,12 +35,12 @@ namespace Ace_Reg
                 while (reader.Read())
                 {
                     tableNames = reader.GetString(0);
-                    selectEvent.Items.Add(tableNames);
+                    if (!(tableNames.EndsWith("_approval")))
+                        selectEvent.Items.Add(tableNames);
                 }
             }
             catch (Exception exception)
             {
-
                 MessageBox.Show(exception.Message);
             }
 
@@ -62,6 +52,9 @@ namespace Ace_Reg
             prizeBox.Items.Add("First");
             prizeBox.Items.Add("Second");
             prizeBox.Items.Add("Third");
+            prizeBox.Items.Add("Event Head");
+            prizeBox.Items.Add("Volunteer");
+            prizeBox.Items.Add("Coordinator");
             prizeBox.Items.Add("Participation");
 
         }            
@@ -131,12 +124,20 @@ namespace Ace_Reg
 
                 else
                 {
+
+                    apTable = selectedTable + "_approval";
+
                     try
                     {
                         sqLite.Open();
                         Query = "UPDATE '" + selectedTable + "' SET Prize = '" + prizeBox.Text + "' WHERE EID='" + this.SBox.Text + "' OR NAME = '" + this.SBox.Text + "'";
                         SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
                         createCommand.ExecuteNonQuery();
+
+                        Query = "UPDATE '" + apTable + "' SET Prize = '" + prizeBox.Text + "' WHERE EID='" + this.SBox.Text + "' OR NAME = '" + this.SBox.Text + "'";
+                        createCommand = new SQLiteCommand(Query, sqLite);
+                        createCommand.ExecuteNonQuery();
+
                         MessageBox.Show("Record Updated");
                     }
                     catch (Exception exception)
@@ -187,7 +188,14 @@ namespace Ace_Reg
 
         private void upName_Click(object sender, RoutedEventArgs e)
         {
+
+            apTable = selectedTable + "_approval";
+
             Query = "UPDATE '" + selectedTable + "' SET Name = '" + nameBox.Text + "' WHERE EID='" + this.SBox.Text + "' OR NAME = '" + this.SBox.Text + "'";
+
+            upGen();
+
+            Query = "UPDATE '" + apTable + "' SET Name = '" + nameBox.Text + "' WHERE EID='" + this.SBox.Text + "' OR NAME = '" + this.SBox.Text + "'";
 
             upGen();
         }
@@ -260,7 +268,8 @@ namespace Ace_Reg
             }
 
             else
-            {
+            {                
+
                 try
                 {
                     sqLite.Open();

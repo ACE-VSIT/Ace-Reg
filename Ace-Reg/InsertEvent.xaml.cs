@@ -1,17 +1,7 @@
 ﻿using System;
 using System.Data.SQLite;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Ace_Reg
 {
@@ -23,10 +13,9 @@ namespace Ace_Reg
         private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";
 
         SQLiteConnection sqLite; string Query, tableNames;
-        private string selectedTable;
-        string ID = Guid.NewGuid().ToString().Replace("-", string.Empty).Substring(0, 8);
-
-
+        private string selectedTable, approvalTable;
+        string ID = Guid.NewGuid().ToString().Replace("-", string.Empty).Substring(0, 5);
+       
         public InsertEvent()
         {
             InitializeComponent();
@@ -38,6 +27,8 @@ namespace Ace_Reg
         {
             SQLiteConnection sqLite = new SQLiteConnection(dbConString);
 
+            ID = selectedTable.Substring(0, 3).ToUpper() + "-" + ID.ToUpper();
+
             if (prizeBox.Text.Equals(null) || nameBox.Text.Equals(null) || courseBox.Equals(null) || rollBox.Equals(null) || semBox.Equals(null) || collBox.Equals(null))
                 MessageBox.Show("Fill all the details");
             else
@@ -45,10 +36,17 @@ namespace Ace_Reg
 
                 try
                 {
+                    approvalTable = selectedTable + "_approval";                    
+
                     sqLite.Open();
                     string Query = "INSERT INTO '" + selectedTable + "'(EID, Name, RollNo, College, Course, Semester_Section, Prize) values('" + ID + "', '" + this.nameBox.Text + "', '" + rollBox.Text + "',  '" + collBox.Text + "',  '" + courseBox.Text + "',  '" + semBox.Text + "', '" + prizeBox.Text + "' )";
                     SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
                     createCommand.ExecuteNonQuery();
+
+                    Query = "INSERT INTO '" + approvalTable + "'(EID, Name, Prize) values('" + ID + "', '" + this.nameBox.Text + "', '" + prizeBox.Text + "')";
+                    createCommand = new SQLiteCommand(Query, sqLite);
+                    createCommand.ExecuteNonQuery();
+
                     MessageBox.Show("New Record Inserted");
                 }
                 catch (Exception exception)
@@ -82,7 +80,8 @@ namespace Ace_Reg
                 while (reader.Read())
                 {
                     tableNames = reader.GetString(0);
-                    selectEvent.Items.Add(tableNames);
+                    if ( ! (tableNames.EndsWith("_approval")) )
+                        selectEvent.Items.Add(tableNames);                    
                 }
             }
             catch (Exception exception)
@@ -99,6 +98,9 @@ namespace Ace_Reg
             prizeBox.Items.Add("First");
             prizeBox.Items.Add("Second");
             prizeBox.Items.Add("Third");
+            prizeBox.Items.Add("Event Head");
+            prizeBox.Items.Add("Volunteer");
+            prizeBox.Items.Add("Coordinator");
             prizeBox.Items.Add("Participation");
         }
 
@@ -115,6 +117,14 @@ namespace Ace_Reg
             EventsDB ev = new EventsDB();
             this.Hide();
             ev.Show();
+        }
+
+
+        private void importCSV_Click(object sender, RoutedEventArgs e)
+        {
+            ImportCSV im = new ImportCSV();
+            this.Hide();
+            im.Show();
         }
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)

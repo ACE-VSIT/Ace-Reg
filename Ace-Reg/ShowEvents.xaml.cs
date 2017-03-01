@@ -16,13 +16,19 @@ namespace Ace_Reg
     {
         private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";
         
+        private readonly string back = "desmond_NUONG12";
+
         SQLiteConnection sqLite; string Query, tableNames;
-        String selectedTable;
+        string selectedTable, apTable;
+        DataRowView rowView;
+
+        bool test;
 
         public ShowEvents()
         {
             InitializeComponent();
             fillCombo();
+            test = false;
         }        
 
         #region Export To CSV
@@ -68,7 +74,8 @@ namespace Ace_Reg
                 while(reader.Read())
                 {
                     tableNames = reader.GetString(0);
-                    selectEvent.Items.Add(tableNames);
+                    if (!(tableNames.EndsWith("_approval")))
+                        selectEvent.Items.Add(tableNames);
                 }                
             }
             catch (Exception exception)
@@ -139,39 +146,51 @@ namespace Ace_Reg
 
             else
             {
-                sqLite = new SQLiteConnection(dbConString);
-
-                try
+                if (test == true)
                 {
-                    sqLite.Open();
-                    Query = "DROP TABLE '" + selectedTable + "'";
-                    SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
-                    createCommand.ExecuteNonQuery();
-                    MessageBox.Show("Event has been eliminated");
+                    sqLite = new SQLiteConnection(dbConString);
+                    apTable = selectedTable + "_approval";
+                    try
+                    {
+                        sqLite.Open();
+                        Query = "DROP TABLE '" + selectedTable + "'";
+                        SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
+                        createCommand.ExecuteNonQuery();
 
-                }
-                catch (Exception exception)
-                {
-                    MessageBox.Show(exception.Message);
+                        Query = "DROP TABLE '" + apTable + "'";
+                        createCommand = new SQLiteCommand(Query, sqLite);
+                        createCommand.ExecuteNonQuery();
+
+                        MessageBox.Show("Event has been eliminated");
+
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message);
+                    }
+
+                    finally
+                    {
+                        EventsDB db = new EventsDB();
+                        sqLite.Close();
+                        this.Hide();
+                        db.Show();
+                    }
                 }
 
-                finally
-                {
-                    EventsDB db = new EventsDB();
-                    sqLite.Close();
-                    this.Hide();                    
-                    db.Show();                                        
-                }
+                else
+                    MessageBox.Show("You shall NOT pass!");
             }
         }
         #endregion
-
+       
         #region Modify Records
         private void delRec_Click(object sender, RoutedEventArgs e)
         {
             sqLite = new SQLiteConnection(dbConString);
+            apTable = selectedTable + "_approval";
 
-            if (MessageBox.Show("Delete selected entries?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            if (MessageBox.Show("Delete selected entry?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
             {
                 MessageBox.Show("Deletion Process Canceled");
             }
@@ -181,8 +200,34 @@ namespace Ace_Reg
                 try
                 {
                     sqLite.Open();
-                    Query = "DELETE FROM '" + selectedTable + "'  WHERE EID='" + SBox.Text + "' OR Name='" + SBox.Text + "'";
-                    buttonHelp();
+
+                    if (SBox.Text.Equals(null) || SBox.Text.Equals("") || SBox.Text.Equals(" "))
+                    {
+                        var selected = eventRecords.SelectedItems;
+                                                
+                        foreach(var selectedRows in selected)
+                        {
+                            rowView = (DataRowView)selectedRows;
+
+                            Query = "DELETE FROM '" + selectedTable + "'  WHERE EID='" + rowView["EID"] + "'";
+                            SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
+                            createCommand.ExecuteNonQuery();
+
+                            Query = "DELETE FROM '" + apTable + "'  WHERE EID='" + rowView["EID"] + "'";                            
+                            createCommand = new SQLiteCommand(Query, sqLite);
+                            createCommand.ExecuteNonQuery();
+                        }
+                    }
+
+                    else
+                    {
+                        Query = "DELETE FROM '" + selectedTable + "'  WHERE EID='" + SBox.Text + "' OR Name='" + SBox.Text + "'";
+                        buttonHelp();
+
+                        Query = "DELETE FROM '" + apTable + "'  WHERE EID='" + SBox.Text + "' OR Name='" + SBox.Text + "'";
+                        buttonHelp();
+                    }
+
                     MessageBox.Show("Selected Entry Deleted");
                 }
                 catch (Exception exception)
@@ -192,6 +237,7 @@ namespace Ace_Reg
 
                 finally
                 {
+                    buttonHelp();
                     sqLite.Close();                    
                 }
             }
@@ -216,6 +262,34 @@ namespace Ace_Reg
             Adapt.Fill(data);
             eventRecords.ItemsSource = data.DefaultView;
             Adapt.Update(data);
+        }
+
+        private void image_MouseEnter(object sender, MouseEventArgs e)
+        {
+            image.Visibility = Visibility.Hidden;
+            passwordCheck.Visibility = Visibility.Visible;
+        }
+
+        private void passwordCheck_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (passwordCheck.Password.Equals(back))
+                test = true;
+            else
+                test = false;
+
+            image.Visibility = Visibility.Visible;                
+        }
+
+        private void image_MouseLeave(object sender, MouseEventArgs e)
+        {
+            image.Visibility = Visibility.Visible;
+            passwordCheck.Visibility = Visibility.Hidden;
+        }
+
+        private void passwordCheck_MouseEnter(object sender, MouseEventArgs e)
+        {
+            image.Visibility = Visibility.Hidden;
+            passwordCheck.Visibility = Visibility.Visible;
         }
         #endregion
 

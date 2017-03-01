@@ -10,7 +10,9 @@ namespace Ace_Reg
     public partial class eveMakeIt : Window
     {
         private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";        
-        SQLiteConnection sqLite; String eveTable;
+        SQLiteConnection sqLite; string eveTable, approvalTable;
+
+        private readonly string chickwa = "desmond_NUONG12";        
 
         public eveMakeIt()
         {
@@ -36,6 +38,7 @@ namespace Ace_Reg
             {
                 
                 eveTable = createEventBox.Text;
+                approvalTable = eveTable + "_approval";
 
                 if (!(string.IsNullOrWhiteSpace(eveTable)))
                 {
@@ -43,9 +46,14 @@ namespace Ace_Reg
                     {
                         sqLite.Open();
 
-                        string Q = "CREATE TABLE '" + eveTable + "'(EID TEXT PRIMARY KEY, Name TEXT, RollNo TEXT, College TEXT, Course TEXT, Semester_Section TEXT, Prize TEXT)";                        
+                        string Q = "CREATE TABLE '" + eveTable + "'(EID TEXT PRIMARY KEY, Name TEXT, RollNo TEXT, College TEXT, Course TEXT, Semester_Section TEXT, Prize TEXT)";
                         SQLiteCommand createCommand = new SQLiteCommand(Q, sqLite);
                         createCommand.ExecuteNonQuery();
+
+                        Q = "CREATE TABLE '" + approvalTable + "'(EID TEXT PRIMARY KEY, Name TEXT, Prize TEXT, Status TEXT, SeatNo TEXT UNIQUE)";
+                        createCommand = new SQLiteCommand(Q, sqLite);
+                        createCommand.ExecuteNonQuery();
+
                         MessageBox.Show("Event Creation Success!");
                     }
                     catch (Exception exception)
@@ -70,6 +78,27 @@ namespace Ace_Reg
         }
         #endregion
 
+        private void login_Click(object sender, RoutedEventArgs e)
+        {
+            bool test = false;
+                        
+            test = passingMarks(chickwa, checkPass.Password); 
+            if (test == true)
+            {
+                createButton.Visibility = Visibility.Visible;
+                label.Visibility = Visibility.Visible;
+
+                login.Visibility = Visibility.Collapsed;
+                checkPass.Visibility = Visibility.Collapsed;
+            }                           
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            createButton.Visibility = Visibility.Collapsed;
+            label.Visibility = Visibility.Collapsed;            
+        }
+
         #region Nav-Exit
         private void goBack_Click(object sender, RoutedEventArgs e)
         {
@@ -82,8 +111,14 @@ namespace Ace_Reg
         {
             Environment.Exit(0);
         }
+        #endregion        
 
-        #endregion
-        
+        private bool passingMarks(string A, string B)
+        {
+            if (A.Equals(B))
+                return true;
+            else
+                return false;
+        }        
     }
 }

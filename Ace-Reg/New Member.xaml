@@ -136,7 +136,12 @@
 				VerticalAlignment="Top" Width="79" Height="25"
 				Click="goBack_Click"/>
 
-		<Button x:Name="modBut" Content="Modify Records" 
+        <Button x:Name="importData" Content="Import from CSV"
+				HorizontalAlignment="Left" Margin="158,427,0,0" 
+				VerticalAlignment="Top" Width="150" Height="25"
+				Click="importData_Click"/>
+
+        <Button x:Name="modBut" Content="Modify Records" 
 			HorizontalAlignment="Center" Margin="177,360,432,81" 
 			Width="185" Click="modBut_Click" />
 

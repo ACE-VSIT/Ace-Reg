@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading;
 using System.Windows;
 
 namespace Ace_Reg
@@ -40,7 +41,7 @@ namespace Ace_Reg
             for (int i = 0; i <= 100; i++)
             {
                 (sender as BackgroundWorker).ReportProgress(i);
-                System.Threading.Thread.Sleep(20);
+                Thread.Sleep(10);
 
             }
         }

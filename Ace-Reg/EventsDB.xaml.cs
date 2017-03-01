@@ -1,16 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Ace_Reg
 {
@@ -56,6 +45,20 @@ namespace Ace_Reg
             InsertEvent ins = new InsertEvent();
             this.Hide();
             ins.Show();
+        }
+
+        private void goEnh_Click(object sender, RoutedEventArgs e)
+        {
+            EnhancedOptions ins = new EnhancedOptions();
+            this.Hide();
+            ins.Show();
+        }
+
+        private void approvalStatus_Click(object sender, RoutedEventArgs e)
+        {
+            EventApprovalStatus approval = new EventApprovalStatus();
+            this.Hide();
+            approval.Show();
         }
     }
 }

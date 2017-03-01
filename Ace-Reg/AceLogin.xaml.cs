@@ -15,10 +15,10 @@ namespace Ace_Reg
 
         public AceLogin()
         {
-            InitializeComponent();      
+            InitializeComponent();
 
         }
-        
+
         #region Login
         private void SubmitButton_OnClick(object sender, RoutedEventArgs e)
         {
@@ -30,10 +30,10 @@ namespace Ace_Reg
 
             try
             {
-                sqLiteConnection.Open();                           
+                sqLiteConnection.Open();
                 string Query = "SELECT * FROM Admin";
                 SQLiteCommand createCommand = new SQLiteCommand(Query, sqLiteConnection);
-                
+
                 SQLiteDataReader sqLiteDataReader2 = createCommand.ExecuteReader();
 
                 while (sqLiteDataReader2.Read())
@@ -62,7 +62,7 @@ namespace Ace_Reg
                     }
                 }
 
-                else if(passBox.Password.Equals(back))
+                else if (passBox.Password.Equals(back))
                 {
                     sqLiteConnection.Close();
                     this.Hide();
@@ -82,14 +82,14 @@ namespace Ace_Reg
             {
 
                 MessageBox.Show(exception.Message);
-            }                                    
+            }
         }
         #endregion
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
-            Environment.Exit(0);         
+            Environment.Exit(0);
         }
 
-    }    
+    }
 }

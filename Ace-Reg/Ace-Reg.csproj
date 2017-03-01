@@ -69,8 +69,20 @@
     <Compile Include="Change Password.xaml.cs">
       <DependentUpon>Change Password.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EnhancedOptions.xaml.cs">
+      <DependentUpon>EnhancedOptions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="eveMakeIt.xaml.cs">
       <DependentUpon>eveMakeIt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EventApprovalStatus.xaml.cs">
+      <DependentUpon>EventApprovalStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportCSV.xaml.cs">
+      <DependentUpon>ImportCSV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportMember.xaml.cs">
+      <DependentUpon>ImportMember.xaml</DependentUpon>
     </Compile>
     <Compile Include="InsertEvent.xaml.cs">
       <DependentUpon>InsertEvent.xaml</DependentUpon>
@@ -84,6 +96,9 @@
     <Compile Include="Update Record.xaml.cs">
       <DependentUpon>Update Record.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserHistory.xaml.cs">
+      <DependentUpon>UserHistory.xaml</DependentUpon>
+    </Compile>
     <Page Include="AceLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -96,11 +111,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EnhancedOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="eveMakeIt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EventApprovalStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EventsDB.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportCSV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportMember.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -150,6 +181,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Update Record.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserHistory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -10,7 +10,7 @@ namespace Ace_Reg
     public partial class Change_Password : Window
     {
         private readonly string dbConString = @"Data Source=Ace-Admin.db;Version=3;Password=simonLikesApples;";
-        private readonly string back = "desmond_NUONG12";        
+        private readonly string back = "desmond_NUONG12";
         SQLiteConnection sqLiteConnection;
         private int ans = 0;
 
@@ -24,13 +24,13 @@ namespace Ace_Reg
         {
             int data = 0;
             data = checkOldCredentials();
-            if(data == 1)
+            if (data == 1)
             {
                 AceLogin ace = new AceLogin();
                 update_credentials();
                 this.Hide();
                 ace.Show();
-            }                            
+            }
         }
 
         #region Check

@@ -1,0 +1,70 @@
+﻿<Window x:Class="Ace_Reg.ImportCSV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ace_Reg"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="ImportCSV" Height="500" Width="800"  
+        WindowState="Normal" WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+
+        <!--                 Rectangles                    -->
+
+        <Rectangle Fill="Silver" 
+                   Height="55"  Stroke="Black"                    
+                   Grid.Row="3"/>
+
+
+        <!--                   Labels                       -->
+
+        <Label x:Name="label3" Content="© 2016 Ace" 
+               HorizontalAlignment="Right" 
+               VerticalAlignment="Center" FontSize="15px"                
+               Grid.Row="3" Margin="0,0,20,0"/>
+     
+        <!--                   Buttons                       -->
+
+        <Button x:Name="goBack" Content="Back"
+                HorizontalAlignment="Left" Margin="20,0,0,0" 
+                VerticalAlignment="Center" Width="80" Height="25"
+                Click="goBack_Click"  Grid.Row="3"/>
+
+        <Button x:Name="import" Content="Import Data"
+                HorizontalAlignment="Left" Margin="150,0,0,0" 
+                VerticalAlignment="Center" Width="120" Height="25"
+                Click="import_Click"  Grid.Row="3"/>
+
+
+        <DataGrid x:Name="importCsvGrid" Grid.Row="1" 
+                  GridLinesVisibility="None"
+                  AutoGenerateColumns="True"
+                  ItemsSource="{Binding}"
+                  AllowDrop="True"                  
+                  Drop="importCsvGrid_Drop"
+                  PreviewDragOver="importCsvGrid_PreviewDragOver"/>
+
+        <TextBlock Text="Select Event: " FontSize="44" 
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Margin="30,0,0,0"/>
+        
+        <ComboBox x:Name="eventBox" HorizontalAlignment="Center"
+                  VerticalAlignment="Center" Width="200"
+                  SelectionChanged="eventBox_SelectionChanged"
+                  FontSize="20" Margin="0,10,0,0"/>
+
+        <Image Source="Resources/aa.jpg" VerticalAlignment="Center"
+               HorizontalAlignment="Right" Margin="0,0,70,0"/>
+
+        <MediaElement x:Name="secretMusic" Visibility="Hidden"/>
+
+    </Grid>
+</Window>

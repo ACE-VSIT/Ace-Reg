@@ -1,0 +1,71 @@
+﻿<Window x:Class="Ace_Reg.EnhancedOptions"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ace_Reg"
+        mc:Ignorable="d"
+        Title="EnhancedOptions" Height="500" Width="800"  
+        WindowState="Normal" WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+        
+        <!--                 Rectangles                    -->
+
+        <Rectangle Fill="Silver" 
+                   Height="40"  Stroke="Black"                    
+                   Grid.Row="3"/>
+
+        <Rectangle Grid.Row="1" VerticalAlignment="Stretch"
+                   HorizontalAlignment="Center" 
+                   Width="4" Margin="0,20,0,20" Fill="Black"/>
+
+
+        <!--                   Labels                       -->
+
+        <Label x:Name="label3" Content="© 2016 Ace" 
+               HorizontalAlignment="Right" 
+               VerticalAlignment="Center" FontSize="15px"                
+               Grid.Row="3" Margin="0,0,20,0"/>
+
+        <!--                   Buttons                       -->
+
+        <Button x:Name="goBack" Content="Back"
+                HorizontalAlignment="Left" Margin="20,0,0,0" 
+                VerticalAlignment="Center" Width="80" Height="25"
+                Click="goBack_Click"
+                Grid.Row="3"/>
+
+        <Button x:Name="userHistoryBut" Content="See Participant History"
+                HorizontalAlignment="Left" Width="200"
+                Grid.Row="1" Height="50" Margin="30,0,0,0"
+                FontSize="15" Background="BlanchedAlmond"
+                Click="userHistoryBut_Click"/>
+
+        <!--                   Images                       -->
+
+        <Image x:Name="image" 
+               VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+               Source="Resources/ace-ev2.png" Stretch="Fill"/>
+
+        <!--                   Text Blocks                      -->
+
+        <TextBlock x:Name="userButInfo" Grid.Row="1" 
+                   HorizontalAlignment="Right" Margin="0,20,60,20"
+                   VerticalAlignment="Stretch" TextWrapping="Wrap"
+                   Width="300" Text="Participants history related to the events
+that he / she attended in their life-time. 
+                   
+                   
+                   A list of events will be shown below their full name"
+                   FontSize="20" FontStyle="Italic" FontWeight="Light"/>
+
+    </Grid>
+</Window>
