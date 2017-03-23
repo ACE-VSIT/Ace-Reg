@@ -10,7 +10,7 @@ namespace Ace_Reg
     /// </summary>
     public partial class New_Member : Window
     {
-        private readonly string dbConString = @"Data Source=Members.db;Version=3;Password=simonLikesApples;";
+        private readonly string dbConString = @Constants.MEMDB;
         private string  courseBox, semBox, depBox, secBox;      
         
 

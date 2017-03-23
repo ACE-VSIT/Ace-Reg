@@ -10,7 +10,7 @@ namespace Ace_Reg
     /// </summary>
     public partial class InsertEvent : Window
     {
-        private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";
+        private readonly string dbConString = @Constants.EVENTDB;
 
         SQLiteConnection sqLite; string Query, tableNames;
         private string selectedTable, approvalTable;

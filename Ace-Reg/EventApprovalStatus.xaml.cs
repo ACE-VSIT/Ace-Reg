@@ -11,7 +11,7 @@ namespace Ace_Reg
     /// </summary>
     public partial class EventApprovalStatus : Window
     {
-        private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";
+        private readonly string dbConString = @Constants.EVENTDB;
 
         SQLiteConnection sqLite;
 

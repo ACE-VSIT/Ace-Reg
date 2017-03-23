@@ -9,10 +9,10 @@ namespace Ace_Reg
     /// </summary>
     public partial class eveMakeIt : Window
     {
-        private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";        
+        private readonly string dbConString = @Constants.EVENTDB;        
         SQLiteConnection sqLite; string eveTable, approvalTable;
 
-        private readonly string chickwa = "desmond_NUONG12";        
+        private readonly string chickwa = Constants.CHIKWA;
 
         public eveMakeIt()
         {

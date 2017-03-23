@@ -14,9 +14,9 @@ namespace Ace_Reg
     /// </summary>
     public partial class ShowEvents : Window
     {
-        private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";
-        
-        private readonly string back = "desmond_NUONG12";
+        private readonly string dbConString = Constants.EVENTDB;
+
+        private readonly string back = Constants.CHIKWA;
 
         SQLiteConnection sqLite; string Query, tableNames;
         string selectedTable, apTable;

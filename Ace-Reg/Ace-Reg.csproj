@@ -69,6 +69,7 @@
     <Compile Include="Change Password.xaml.cs">
       <DependentUpon>Change Password.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Constants.cs" />
     <Compile Include="EnhancedOptions.xaml.cs">
       <DependentUpon>EnhancedOptions.xaml</DependentUpon>
     </Compile>

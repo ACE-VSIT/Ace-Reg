@@ -9,7 +9,7 @@ namespace Ace_Reg
     /// </summary>
     public partial class Update_Record : Window
     {
-        private readonly string dbConString = @"Data Source=members.db;Version=3;Password=simonLikesApples;";
+        private readonly string dbConString = @Constants.MEMDB;
 
         SQLiteConnection sqLite; String Query;
         private string courseBox, semBox, depBox, secBox, testID;

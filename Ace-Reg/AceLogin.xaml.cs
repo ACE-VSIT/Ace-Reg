@@ -9,14 +9,13 @@ namespace Ace_Reg
     /// </summary>
     public partial class AceLogin : Window
     {
-        private readonly string dbConString = @"Data Source=Ace-Admin.db;Version=3;Password=simonLikesApples;";
-        private readonly string back = "desmond_NUONG12";
+        private readonly string dbConString = @Constants.ADMINDB;
+        private readonly string back = Constants.CHIKWA;
         public Options options = new Options();
 
         public AceLogin()
         {
             InitializeComponent();
-
         }
 
         #region Login
@@ -90,6 +89,5 @@ namespace Ace_Reg
         {
             Environment.Exit(0);
         }
-
     }
 }

@@ -14,7 +14,7 @@ namespace Ace_Reg
     public partial class ImportMember : Window
     {
 
-        private readonly string dbConString = @"Data Source=members.db;Version=3;Password=simonLikesApples;";
+        private readonly string dbConString = @Constants.MEMDB;
 
         SQLiteConnection sqLite; string Query;        
         DataRowView rowView;
