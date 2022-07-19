@@ -18,16 +18,15 @@ namespace Ace_Reg
         {
             InitializeComponent();
         }
-   
+
         #region Search
         private void SearchButton_OnClick(object sender, RoutedEventArgs e)
         {
-            sqLite = new SQLiteConnection(dbConString);            
+            sqLite = new SQLiteConnection(dbConString);
 
             try
             {
                 sqLite.Open();
-                sqLite.ChangePassword("simonLikesApples");
                 Query = "SELECT * FROM MemberData WHERE  EnrolmentNo='" + SearchingBox.Text + "' OR Name='" + SearchingBox.Text + "' ORDER BY Name";
                 buttonHelper();
             }
@@ -43,23 +42,22 @@ namespace Ace_Reg
         }
         #endregion
 
-        #region Delete 
+        #region Delete
         private void delAll_Click(object sender, RoutedEventArgs e)
         {
             sqLite = new SQLiteConnection(dbConString);
 
             if (MessageBox.Show("Delete all entries?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
             {
-                MessageBox.Show("Deletion Process Canceled");                
+                MessageBox.Show("Deletion Process Canceled");
             }
 
             else
             {
-               
+
                 try
                 {
                     sqLite.Open();
-                 //   sqLite.ChangePassword("simonLikesApples");
                     Query = "DELETE FROM MemberData";
                     buttonHelper();
                 }
@@ -74,7 +72,7 @@ namespace Ace_Reg
                     MessageBox.Show("Entries Deleted");
                 }
             }
-            
+
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
@@ -91,9 +89,6 @@ namespace Ace_Reg
                 try
                 {
                     sqLite.Open();
-                    //   sqLite.ChangePassword("simonLikesApples");
-
-
                     if (SearchingBox.Text.Equals(null) || SearchingBox.Text.Equals("") || SearchingBox.Text.Equals(" "))
                     {
                         var selected = recordsTable.SelectedItems;
@@ -102,7 +97,7 @@ namespace Ace_Reg
                         {
                             var rowView = (DataRowView)selectedRows;
                             Query = "DELETE FROM MemberData WHERE EnrolmentNo='" + rowView["EnrolmentNo"] + "'";
-                            buttonHelper();                            
+                            buttonHelper();
                         }
                     }
 
@@ -111,7 +106,7 @@ namespace Ace_Reg
                         Query = "DELETE FROM MemberData WHERE EnrolmentNo='" + SearchingBox.Text + "' OR Name='" + SearchingBox.Text + "'";
                         buttonHelper();
                     }
-                    
+
                 }
                 catch (Exception exception)
                 {
