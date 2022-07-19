@@ -16,7 +16,7 @@ namespace Ace_Reg
     public partial class All_Records : Window
     {
 
-        private readonly string dbConString = @"Data Source=members.db;Version=3;Password=simonLikesApples;";
+        private readonly string dbConString = @"Data Source=members.db;Version=3;";
         SQLiteConnection sqLite; 
 
         private String Query;

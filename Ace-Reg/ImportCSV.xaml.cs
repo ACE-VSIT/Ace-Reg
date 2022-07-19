@@ -16,7 +16,7 @@ namespace Ace_Reg
     public partial class ImportCSV : Window
     {
 
-        private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";
+        private readonly string dbConString = @"Data Source=events.db;Version=3;";
 
         SQLiteConnection sqLite; string Query, tableNames;
         private string selectedTable, approvalTable;
@@ -25,11 +25,11 @@ namespace Ace_Reg
         public ImportCSV()
         {
             InitializeComponent();
-            fillCombo();                    
+            fillCombo();
         }
 
 
-        #region Fill Combo 
+        #region Fill Combo
         private void fillCombo()
         {
             sqLite = new SQLiteConnection(dbConString);
@@ -159,10 +159,10 @@ namespace Ace_Reg
                 ex.ToString();
                 MessageBox.Show("No File Selected", "Message");
             }
-        }        
+        }
         #endregion
 
-        #region Nav & Exit   
+        #region Nav & Exit
         private void goBack_Click(object sender, RoutedEventArgs e)
         {
             InsertEvent ins = new InsertEvent();
@@ -176,12 +176,12 @@ namespace Ace_Reg
         }
         #endregion
 
-        #region Drag Drop        
+        #region Drag Drop
         private void importCsvGrid_Drop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                // Note that you can have more than one file.                
+                // Note that you can have more than one file.
                 var test = e.Data.GetData(DataFormats.FileDrop);
                 string[] files = (string[])test;
                 var file = files[0];

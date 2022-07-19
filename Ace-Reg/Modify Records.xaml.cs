@@ -11,7 +11,7 @@ namespace Ace_Reg
     /// </summary>
     public partial class Modify_Records : Window
     {
-        private readonly string dbConString = @"Data Source=members.db;Version=3;Password=simonLikesApples;";
+        private readonly string dbConString = @"Data Source=members.db;Version=3;";
         SQLiteConnection sqLite;   String Query;
 
         public Modify_Records()

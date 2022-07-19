@@ -14,9 +14,9 @@ namespace Ace_Reg
     /// </summary>
     public partial class ShowEvents : Window
     {
-        private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";
-        
-        private readonly string back = "desmond_NUONG12";
+        private readonly string dbConString = @"Data Source=events.db;Version=3;";
+
+        private readonly string back = "apricot_udon";
 
         SQLiteConnection sqLite; string Query, tableNames;
         string selectedTable, apTable;
@@ -29,7 +29,7 @@ namespace Ace_Reg
             InitializeComponent();
             fillCombo();
             test = false;
-        }        
+        }
 
         #region Export To CSV
         private void exportBut_Click(object sender, RoutedEventArgs e)
@@ -61,7 +61,7 @@ namespace Ace_Reg
         }
         #endregion
 
-        #region Fill Combo 
+        #region Fill Combo
         private void fillCombo()
         {
             sqLite = new SQLiteConnection(dbConString);
@@ -76,7 +76,7 @@ namespace Ace_Reg
                     tableNames = reader.GetString(0);
                     if (!(tableNames.EndsWith("_approval")))
                         selectEvent.Items.Add(tableNames);
-                }                
+                }
             }
             catch (Exception exception)
             {
@@ -183,7 +183,7 @@ namespace Ace_Reg
             }
         }
         #endregion
-       
+
         #region Modify Records
         private void delRec_Click(object sender, RoutedEventArgs e)
         {
@@ -204,7 +204,7 @@ namespace Ace_Reg
                     if (SBox.Text.Equals(null) || SBox.Text.Equals("") || SBox.Text.Equals(" "))
                     {
                         var selected = eventRecords.SelectedItems;
-                                                
+
                         foreach(var selectedRows in selected)
                         {
                             rowView = (DataRowView)selectedRows;
@@ -213,7 +213,7 @@ namespace Ace_Reg
                             SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
                             createCommand.ExecuteNonQuery();
 
-                            Query = "DELETE FROM '" + apTable + "'  WHERE EID='" + rowView["EID"] + "'";                            
+                            Query = "DELETE FROM '" + apTable + "'  WHERE EID='" + rowView["EID"] + "'";
                             createCommand = new SQLiteCommand(Query, sqLite);
                             createCommand.ExecuteNonQuery();
                         }
@@ -238,7 +238,7 @@ namespace Ace_Reg
                 finally
                 {
                     buttonHelp();
-                    sqLite.Close();                    
+                    sqLite.Close();
                 }
             }
         }
@@ -277,7 +277,7 @@ namespace Ace_Reg
             else
                 test = false;
 
-            image.Visibility = Visibility.Visible;                
+            image.Visibility = Visibility.Visible;
         }
 
         private void image_MouseLeave(object sender, MouseEventArgs e)

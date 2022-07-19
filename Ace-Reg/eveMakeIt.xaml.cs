@@ -9,18 +9,18 @@ namespace Ace_Reg
     /// </summary>
     public partial class eveMakeIt : Window
     {
-        private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";        
+        private readonly string dbConString = @"Data Source=events.db;Version=3;";
         SQLiteConnection sqLite; string eveTable, approvalTable;
 
-        private readonly string chickwa = "desmond_NUONG12";        
+        private readonly string chickwa = "apricot_udon";
 
         public eveMakeIt()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void createButton_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             createEvent();
         }
 
@@ -32,11 +32,11 @@ namespace Ace_Reg
             if (MessageBox.Show("Create this event?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
             {
                 MessageBox.Show("Process Terminated");
-            }            
+            }
 
             else
             {
-                
+
                 eveTable = createEventBox.Text;
                 approvalTable = eveTable + "_approval";
 
@@ -73,7 +73,7 @@ namespace Ace_Reg
                 else
                 {
                     MessageBox.Show("White space not allowed");
-                }    
+                }
             }
         }
         #endregion
@@ -81,8 +81,8 @@ namespace Ace_Reg
         private void login_Click(object sender, RoutedEventArgs e)
         {
             bool test = false;
-                        
-            test = passingMarks(chickwa, checkPass.Password); 
+
+            test = passingMarks(chickwa, checkPass.Password);
             if (test == true)
             {
                 createButton.Visibility = Visibility.Visible;
@@ -90,13 +90,13 @@ namespace Ace_Reg
 
                 login.Visibility = Visibility.Collapsed;
                 checkPass.Visibility = Visibility.Collapsed;
-            }                           
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             createButton.Visibility = Visibility.Collapsed;
-            label.Visibility = Visibility.Collapsed;            
+            label.Visibility = Visibility.Collapsed;
         }
 
         #region Nav-Exit
@@ -111,7 +111,7 @@ namespace Ace_Reg
         {
             Environment.Exit(0);
         }
-        #endregion        
+        #endregion
 
         private bool passingMarks(string A, string B)
         {
@@ -119,6 +119,6 @@ namespace Ace_Reg
                 return true;
             else
                 return false;
-        }        
+        }
     }
 }

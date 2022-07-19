@@ -9,7 +9,7 @@ namespace Ace_Reg
     /// </summary>
     public partial class UserHistory : Window
     {
-        private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";
+        private readonly string dbConString = @"Data Source=events.db;Version=3;";
 
         SQLiteConnection sqLite;
         string Query, tableNames, testID;
@@ -41,7 +41,7 @@ namespace Ace_Reg
                 while (reader.Read())
                 {
                     tableNames = reader.GetString(0);
-                    testIfExists(tableNames);                    
+                    testIfExists(tableNames);
                 }
             }
             catch (Exception exception)
@@ -100,7 +100,7 @@ namespace Ace_Reg
 
                     sqLite.Close();
                 }
-            }            
+            }
         }
         #endregion
 

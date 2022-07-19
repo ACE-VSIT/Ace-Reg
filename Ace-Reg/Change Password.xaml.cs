@@ -9,8 +9,8 @@ namespace Ace_Reg
     /// </summary>
     public partial class Change_Password : Window
     {
-        private readonly string dbConString = @"Data Source=Ace-Admin.db;Version=3;Password=simonLikesApples;";
-        private readonly string back = "desmond_NUONG12";
+        private readonly string dbConString = @"Data Source=ace_admin.db;Version=3;";
+        private readonly string back = "apricot_udon";
         SQLiteConnection sqLiteConnection;
         private int ans = 0;
 
