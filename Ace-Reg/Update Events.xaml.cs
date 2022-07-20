@@ -10,7 +10,7 @@ namespace Ace_Reg
     /// </summary>
     public partial class Update_Events : Window
     {
-        private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";
+        private readonly string dbConString = @"Data Source=events.db;Version=3;";
 
         SQLiteConnection sqLite; string Query, tableNames;
         private string selectedTable, apTable, testID; int x;
@@ -22,7 +22,7 @@ namespace Ace_Reg
             fillCombo();
         }
 
-        #region Fill Combo 
+        #region Fill Combo
         private void fillCombo()
         {
             sqLite = new SQLiteConnection(dbConString);
@@ -57,7 +57,7 @@ namespace Ace_Reg
             prizeBox.Items.Add("Coordinator");
             prizeBox.Items.Add("Participation");
 
-        }            
+        }
 
         private void selectEvent_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -151,7 +151,7 @@ namespace Ace_Reg
                         ShowEvents sh = new ShowEvents();
                         sqLite.Close();
                         this.Hide();
-                        sh.Show();                        
+                        sh.Show();
                     }
                 }
             }
@@ -240,7 +240,7 @@ namespace Ace_Reg
                 }
             }
         }
-        #endregion               
+        #endregion
 
         #region Nav-Exit
         private void goBack_Click(object sender, RoutedEventArgs e)
@@ -249,7 +249,7 @@ namespace Ace_Reg
             this.Hide();
             sh.Show();
         }
-      
+
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             Environment.Exit(0);
@@ -268,7 +268,7 @@ namespace Ace_Reg
             }
 
             else
-            {                
+            {
 
                 try
                 {
@@ -291,7 +291,7 @@ namespace Ace_Reg
                     this.Hide();
                     sh.Show();
                 }
-            }            
+            }
 
         }
         #endregion

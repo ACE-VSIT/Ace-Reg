@@ -11,7 +11,7 @@ namespace Ace_Reg
     /// </summary>
     public partial class EventApprovalStatus : Window
     {
-        private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";
+        private readonly string dbConString = @"Data Source=events.db;Version=3;";
 
         SQLiteConnection sqLite;
 
@@ -39,7 +39,7 @@ namespace Ace_Reg
 
         #endregion
 
-        #region Fill Combo 
+        #region Fill Combo
         private void fillCombo()
         {
             sqLite = new SQLiteConnection(dbConString);
@@ -66,7 +66,7 @@ namespace Ace_Reg
                 sqLite.Close();
             }
         }
-        #endregion        
+        #endregion
 
         private void approvalBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -115,19 +115,19 @@ namespace Ace_Reg
 
             sqLite = new SQLiteConnection(dbConString);
 
-            
+
             if (MessageBox.Show("Update Status?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
             {
                 MessageBox.Show("Updation Process Canceled");
             }
 
             else
-            {                
+            {
 
                 try
                 {
                     sqLite.Open();
-                   
+
                     Query = "UPDATE '" + apTable + "'SET Status = '" + statusCheck.IsChecked.ToString() + "' WHERE EID='" + personSelected.Text + "' OR NAME = '" + personSelected.Text + "' ";
                     SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
                     createCommand.ExecuteNonQuery();

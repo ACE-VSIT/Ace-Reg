@@ -12,20 +12,20 @@ namespace Ace_Reg
 {
     /// <summary>
     /// Interaction logic for All_Records.xaml
-    /// </summary>    
+    /// </summary>
     public partial class All_Records : Window
     {
 
-        private readonly string dbConString = @"Data Source=members.db;Version=3;Password=simonLikesApples;";
-        SQLiteConnection sqLite; 
+        private readonly string dbConString = @"Data Source=members.db;Version=3;";
+        SQLiteConnection sqLite;
 
         private String Query;
         public All_Records()
         {
             InitializeComponent();
             allRecord();
-        }                                      
-        
+        }
+
         #region Helper Methods
         private void allRecord()
         {
@@ -33,9 +33,9 @@ namespace Ace_Reg
             try
             {
                 sqLite.Open();
-              //  sqLite.ChangePassword("simonLikesApples");               
+
                 Query = "SELECT * FROM MemberData ORDER BY Name";
-                buttonHelp();           
+                buttonHelp();
             }
             catch (Exception exception)
             {
@@ -70,7 +70,6 @@ namespace Ace_Reg
             try
             {
                 sqLite.Open();
-                //sqLite.ChangePassword("simonLikesApples");
                 Query = "SELECT * FROM MemberData WHERE EnrolmentNo='" + SearchingBox.Text + "' OR Name='" + SearchingBox.Text + "' ORDER BY Name";
                 buttonHelp();
             }
@@ -108,14 +107,14 @@ namespace Ace_Reg
         #region Export to Excel
         private void expButton_Click(object sender, RoutedEventArgs e)
         {
-            ExportDataGrid();                    
+            ExportDataGrid();
         }
 
         private void ExportDataGrid()
         {
-           
+
             try
-            {                
+            {
                 recordsTable.SelectAllCells();
                 recordsTable.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
                 ApplicationCommands.Copy.Execute(null, recordsTable);
@@ -134,7 +133,7 @@ namespace Ace_Reg
 
         }
 
-        #endregion                 
+        #endregion
 
     }
 }

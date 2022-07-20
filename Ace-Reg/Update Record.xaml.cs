@@ -9,7 +9,7 @@ namespace Ace_Reg
     /// </summary>
     public partial class Update_Record : Window
     {
-        private readonly string dbConString = @"Data Source=members.db;Version=3;Password=simonLikesApples;";
+        private readonly string dbConString = @"Data Source=members.db;Version=3;";
 
         SQLiteConnection sqLite; String Query;
         private string courseBox, semBox, depBox, secBox, testID;
@@ -78,7 +78,7 @@ namespace Ace_Reg
 
             try
             {
-                
+
                 sqLite.Open();
                 Query = "SELECT * FROM MemberData WHERE EnrolmentNo='" + SearchingBox.Text + "' OR Name='" + SearchingBox.Text + "' ORDER BY Name";
                 SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
@@ -87,7 +87,7 @@ namespace Ace_Reg
                 while (dataReader.Read())
                 {
                     testID = dataReader.GetString(0);
-                    x++;       
+                    x++;
                 }
 
             }
@@ -105,8 +105,8 @@ namespace Ace_Reg
                     x = 0;
                 }
 
-                else                
-                    MessageBox.Show("No such record");                                                                      
+                else
+                    MessageBox.Show("No such record");
 
                 sqLite.Close();
             }
@@ -128,7 +128,6 @@ namespace Ace_Reg
                 try
                 {
                     sqLite.Open();
-                    // sqLite.ChangePassword("simonLikesApples");
                     Query = "UPDATE MemberData SET EnrolmentNo = '" + this.UIDbox.Text + "', Name = '" + this.NameBox.Text + "', Course = '" + this.courseBox + "', Semester = '" + this.semBox + "', Section = '" + this.secBox + "',  Department = '" + this.depBox + "', Email = '" + this.Emailbox.Text + "', ContactNo = '" + this.Contactbox.Text + "' WHERE EnrolmentNo='" + this.SearchingBox.Text + "' OR NAME = '" + this.SearchingBox.Text + "'";
                     SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
                     createCommand.ExecuteNonQuery();
@@ -147,7 +146,7 @@ namespace Ace_Reg
                     this.Hide();
                     o.Show();
                 }
-            }        
+            }
         }
         #endregion
 
@@ -165,7 +164,7 @@ namespace Ace_Reg
         private void SectionBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             secBox = SectionBox.SelectedValue as string;
-        }        
+        }
 
         private void DeptBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
@@ -202,7 +201,6 @@ namespace Ace_Reg
                 try
                 {
                     sqLite.Open();
-                    // sqLite.ChangePassword("simonLikesApples");                    
                     SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
                     createCommand.ExecuteNonQuery();
                     MessageBox.Show("Record Updated");

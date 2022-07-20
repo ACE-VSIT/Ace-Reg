@@ -10,16 +10,16 @@ namespace Ace_Reg
     /// </summary>
     public partial class InsertEvent : Window
     {
-        private readonly string dbConString = @"Data Source=Events.db;Version=3;Password=simonLikesApples;";
+        private readonly string dbConString = @"Data Source=events.db;Version=3;";
 
         SQLiteConnection sqLite; string Query, tableNames;
         private string selectedTable, approvalTable;
         string ID = Guid.NewGuid().ToString().Replace("-", string.Empty).Substring(0, 5);
-       
+
         public InsertEvent()
         {
             InitializeComponent();
-            fillCombo();            
+            fillCombo();
         }
 
         #region Insert
@@ -36,7 +36,7 @@ namespace Ace_Reg
 
                 try
                 {
-                    approvalTable = selectedTable + "_approval";                    
+                    approvalTable = selectedTable + "_approval";
 
                     sqLite.Open();
                     string Query = "INSERT INTO '" + selectedTable + "'(EID, Name, RollNo, College, Course, Semester_Section, Prize) values('" + ID + "', '" + this.nameBox.Text + "', '" + rollBox.Text + "',  '" + collBox.Text + "',  '" + courseBox.Text + "',  '" + semBox.Text + "', '" + prizeBox.Text + "' )";
@@ -66,8 +66,8 @@ namespace Ace_Reg
 
         }
         #endregion
-                
-        #region Fill Combo 
+
+        #region Fill Combo
         private void fillCombo()
         {
             sqLite = new SQLiteConnection(dbConString);
@@ -81,7 +81,7 @@ namespace Ace_Reg
                 {
                     tableNames = reader.GetString(0);
                     if ( ! (tableNames.EndsWith("_approval")) )
-                        selectEvent.Items.Add(tableNames);                    
+                        selectEvent.Items.Add(tableNames);
                 }
             }
             catch (Exception exception)

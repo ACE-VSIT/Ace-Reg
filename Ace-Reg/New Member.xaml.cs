@@ -10,9 +10,9 @@ namespace Ace_Reg
     /// </summary>
     public partial class New_Member : Window
     {
-        private readonly string dbConString = @"Data Source=Members.db;Version=3;Password=simonLikesApples;";
-        private string  courseBox, semBox, depBox, secBox;      
-        
+        private readonly string dbConString = @"Data Source=Members.db;Version=3;";
+        private string  courseBox, semBox, depBox, secBox;
+
 
         public New_Member()
         {
@@ -31,9 +31,9 @@ namespace Ace_Reg
             CourseBox.Items.Add("MJMC");
             CourseBox.Items.Add("B.COM");
             CourseBox.Items.Add("BA (H)");
- 
+
         //--------------------------------------------------------------------//
-            
+
             SemesterBox.Items.Add("One");
             SemesterBox.Items.Add("Two");
             SemesterBox.Items.Add("Three");
@@ -46,7 +46,7 @@ namespace Ace_Reg
             SemesterBox.Items.Add("Ten");
 
         //--------------------------------------------------------------------//
-         
+
             SectionBox.Items.Add("Morning A");
             SectionBox.Items.Add("Morning B");
             SectionBox.Items.Add("Morning C");
@@ -73,22 +73,22 @@ namespace Ace_Reg
 
         #region Data-Insertion
         private void SubmitButon_OnClick(object sender, RoutedEventArgs e)
-        {            
+        {
             SQLiteConnection sqLite = new SQLiteConnection(dbConString);
 
-            //if ( UIDbox.Text.Equals(null) || NameBox.Text.Equals(null) || courseBox.Equals(null) || semBox.Equals(null) || secBox.Equals(null) || depBox.Equals(null) )                           
-              //  MessageBox.Show("Fill all the details");    
-            
+            //if ( UIDbox.Text.Equals(null) || NameBox.Text.Equals(null) || courseBox.Equals(null) || semBox.Equals(null) || secBox.Equals(null) || depBox.Equals(null) )
+              //  MessageBox.Show("Fill all the details");
+
           //  else
           //  {
                 try
                 {
                     sqLite.Open();
-                    //  sqLite.ChangePassword("simonLikesApples");
 
-                    string Query = "INSERT INTO MemberData (EnrolmentNo, Name, Course, Semester, Section, Department, ContactNo, Email ) values('" + this.UIDbox.Text + "', '" + this.NameBox.Text + "', '" + this.courseBox + "',  '" + this.semBox + "',  '" + this.secBox + "',  '" + this.depBox + "', '" + this.ContactBox.Text + "', '" + this.EmailBox.Text + "' )";                    
+
+                    string Query = "INSERT INTO MemberData (EnrolmentNo, Name, Course, Semester, Section, Department, ContactNo, Email ) values('" + this.UIDbox.Text + "', '" + this.NameBox.Text + "', '" + this.courseBox + "',  '" + this.semBox + "',  '" + this.secBox + "',  '" + this.depBox + "', '" + this.ContactBox.Text + "', '" + this.EmailBox.Text + "' )";
                     SQLiteCommand createCommand = new SQLiteCommand(Query, sqLite);
-                    createCommand.ExecuteNonQuery();                                                                                                                                                                                                                                                          
+                    createCommand.ExecuteNonQuery();
                     MessageBox.Show("New Record Inserted");
 
                 }
@@ -103,9 +103,9 @@ namespace Ace_Reg
                     Options o = new Options();
                     sqLite.Close();
                     this.Hide();
-                    o.Show();                                                            
+                    o.Show();
                 }
-           // }           
+           // }
         }
 
         #endregion
@@ -152,7 +152,7 @@ namespace Ace_Reg
         {
             ImportMember immem = new ImportMember();
             this.Hide();
-            immem.Show();         
+            immem.Show();
         }
 
         #endregion
